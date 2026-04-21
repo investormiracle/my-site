@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Zukky Exchange</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background-color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: #ffffff;
+      padding: 40px 20px;
+    }
+
+    /* Animated & Clickable BTC Background */
+    .btc-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .btc {
+      position: absolute;
+      font-size: 2.8rem;
+      color: #F7931A;
+      opacity: 0.09;
+      animation: floatBTC 25s linear infinite;
+      user-select: none;
+      z-index: 1;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btc:hover {
+      opacity: 0.35;
+      transform: scale(1.25);
+    }
+
+    @keyframes floatBTC {
+      0%   { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-100vh) rotate(360deg); }
+    }
+
+    .btc:nth-child(1)  { left: 8%; animation-duration: 28s; animation-delay: 0s; }
+    .btc:nth-child(2)  { left: 18%; animation-duration: 35s; animation-delay: -8s; font-size: 2.2rem; }
+    .btc:nth-child(3)  { left: 28%; animation-duration: 22s; animation-delay: -15s; }
+    .btc:nth-child(4)  { left: 42%; animation-duration: 31s; animation-delay: -4s; font-size: 3.1rem; }
+    .btc:nth-child(5)  { left: 55%; animation-duration: 26s; animation-delay: -18s; }
+    .btc:nth-child(6)  { left: 65%; animation-duration: 33s; animation-delay: -11s; font-size: 2.5rem; }
+    .btc:nth-child(7)  { left: 78%; animation-duration: 24s; animation-delay: -22s; }
+    .btc:nth-child(8)  { left: 85%; animation-duration: 29s; animation-delay: -3s; font-size: 2.9rem; }
+    .btc:nth-child(9)  { left: 12%; animation-duration: 27s; animation-delay: -14s; }
+    .btc:nth-child(10) { left: 72%; animation-duration: 32s; animation-delay: -7s; font-size: 2.3rem; }
+
+    .hero-content {
+      max-width: 900px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 5.8rem;
+      font-weight: 800;
+      color: #001F3F;
+      margin-bottom: 8px;
+      letter-spacing: -3px;
+    }
+
+    .logo span {
+      color: #007A5E;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      color: #001F3F;
+      margin: 15px 0 25px 0;
+    }
+
+    .hero p {
+      font-size: 1.9rem;
+      color: #222222;
+      margin-bottom: 40px;
+      font-weight: 500;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #007A5E;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 600;
+      padding: 18px 48px;
+      border-radius: 50px;
+      text-decoration: none;
+      margin-bottom: 60px;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 25px rgba(0, 122, 94, 0.3);
+      min-width: 280px; /* Better touch target */
+    }
+
+    .cta-button:hover {
+      background: #001F3F;
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px rgba(0, 31, 63, 0.3);
+    }
+
+    /* SOCIAL ICONS */
+    .social-float {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 30px;
+      z-index: 3;
+    }
+
+    .social-icon {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 10px 25px rgba(0, 31, 63, 0.18);
+    }
+
+    .social-icon:hover {
+      transform: translateY(-12px) scale(1.12);
+      box-shadow: 0 18px 35px rgba(0, 122, 94, 0.3);
+    }
+
+    .social-icon svg {
+      width: 34px;
+      height: 34px;
+      fill: white;
+    }
+
+    .x-icon       { background: #001F3F; }
+    .whatsapp-icon { background: #25D366; }
+    .telegram-icon { background: #229ED9; }
+
+    .social-icon:focus {
+      outline: 4px solid #007A5E;
+      outline-offset: 4px;
+    }
+
+    /* ==================== MOBILE OPTIMIZATIONS ==================== */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 30px 15px;
+        min-height: 100vh;
+      }
+
+      .logo {
+        font-size: 4.2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero p {
+        font-size: 1.5rem;
+      }
+
+      .cta-button {
+        font-size: 1.35rem;
+        padding: 16px 40px;
+        min-width: 260px;
+      }
+
+      .social-float {
+        bottom: 50px;
+        gap: 20px;
+      }
+
+      .social-icon {
+        width: 62px;
+        height: 62px;
+      }
+
+      .social-icon svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      .btc {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 3.8rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.35rem;
+      }
+
+      .social-float {
+        bottom: 40px;
+        gap: 18px;
+      }
+
+      .social-icon {
+        width: 58px;
+        height: 58px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    
+    <!-- Animated Clickable BTC Background -->
+    <div class="btc-background">
+      <a href="https://zukkyexchange.com" target="_blank" class="btc" aria-label="Visit Zukky Exchange">₿</a>
+      <a href="https://zukkyexchange.com" target="_blank" class="btc" aria-label="Visit Zukky Exchange">₿</a>
+      <a href="https://zukkyexchange.com" target="_blank" class="btc" aria-label="Visit Zukky Exchange">₿</a>
+      <a href="https://zukkyexchange.com" target="_blank" class="btc" aria-label="Visit Zukky Exchange">₿</a>
+      <a href="https://zukkyexchange.com" target="_blank" class="btc" aria-label="Visit Zukky Exchange">₿</a>
+      <a href="https://zukkyexchange.com" target="_blank" class="btc" aria-label="Visit Zukky Exchange">₿</a>
+      <a href="https://zukkyexchange.com" target="_blank" class="btc" aria-label="Visit Zukky Exchange">₿</a>
+      <a href="https://zukkyexchange.com" target="_blank" class="btc" aria-label="Visit Zukky Exchange">₿</a>
+      <a href="https://zukkyexchange.com" target="_blank" class="btc" aria-label="Visit Zukky Exchange">₿</a>
+      <a href="https://zukkyexchange.com" target="_blank" class="btc" aria-label="Visit Zukky Exchange">₿</a>
+    </div>
+
+    <div class="hero-content">
+      <div class="logo">Z<span>ukky</span></div>
+      <h1>Zukky Exchange</h1>
+      <p>Fast, Secure Crypto Exchange</p>
+      
+      <a href="https://wa.me/2348061978763?text=Hello%20Zukky%20Exchange%2C%20I%27d%20like%20to%20connect%20for%20business%20partnership" 
+         target="_blank" 
+         class="cta-button"
+         aria-label="Let's Connect for Business">
+        Let's Connect for Business
+      </a>
+    </div>
+
+    <!-- SOCIAL MEDIA ICONS (Direct to Profile / DM) -->
+    <div class="social-float">
+      <!-- X -->
+      <a href="https://x.com/zukkyXchange" 
+         target="_blank" 
+         class="social-icon x-icon"
+         aria-label="Visit Zukky Exchange on X">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.244 2.25l-7.165 8.159L3.75 2.25H0.75L9.75 13.5L0.75 21.75h3.75L12 15.75l8.25 6h3.75L14.25 13.5L23.25 2.25H18.244Z"/>
+        </svg>
+      </a>
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/2348061978763" 
+         target="_blank" 
+         class="social-icon whatsapp-icon"
+         aria-label="Message us on WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.485-.888-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.48 0 1.463 1.065 2.877 1.213 3.074.149.198 2.095 3.2 5.077 4.487.708.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.355L2.25 21.75l1.386-5.13a9.87 9.87 0 01-1.355-5.03c0-5.448 4.43-9.878 9.88-9.878 2.64 0 5.12 1.03 6.98 2.89 1.86 1.86 2.89 4.34 2.89 6.98 0 5.448-4.43 9.878-9.88 9.878"/>
+        </svg>
+      </a>
+
+      <!-- Telegram -->
+      <a href="https://t.me/Zukkyexchange" 
+         target="_blank" 
+         class="social-icon telegram-icon"
+         aria-label="Message us on Telegram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 11.944 0zm4.962 8.474L16.2 16.8c-.2.8-.8 1-1.4.6l-3.6-2.6-1.8 1.8c-.2.2-.4.2-.6 0l-.6-.6c-.2-.2-.2-.4 0-.6l1.8-1.8L7.4 9.8c-.8-.6-.8-1.4.2-1.8l8.4-3.2c.6-.2 1.2.2 1.2.8z"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+</body>
+</html>
